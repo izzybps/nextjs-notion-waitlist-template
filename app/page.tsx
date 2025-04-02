@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   const handleInstagramChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+    setInstagram(event.target.value);
   };
 
   const isValidEmail = (email: string) => {
@@ -47,7 +47,29 @@ export default function Home() {
 
     const promise = new Promise(async (resolve, reject) => {
       try {
-        // First, attempt to send the email
+        // First, check if this email already exists in Notion
+        const notionResponse = await fetch("/api/notion", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, instagram }),
+        });
+
+        if (!notionResponse.ok) {
+          if (notionResponse.status === 429) {
+            reject("Rate limited");
+          } else if (notionResponse.status === 409) {
+            // Handle case where email already exists
+            const errorData = await notionResponse.json();
+            reject("Email already exists");
+          } else {
+            reject("Notion insertion failed");
+          }
+          return;
+        }
+        
+        // If Notion insertion is successful, proceed to send welcome email
         const mailResponse = await fetch("/api/mail", {
           cache: "no-store",
           method: "POST",
@@ -63,27 +85,11 @@ export default function Home() {
           } else {
             reject("Email sending failed");
           }
-          return; // Exit the promise early if mail sending fails
+          return;
         }
-
-        // If email sending is successful, proceed to insert into Notion
-        const notionResponse = await fetch("/api/notion", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name, email, instagram }),
-        });
-
-        if (!notionResponse.ok) {
-          if (notionResponse.status === 429) {
-            reject("Rate limited");
-          } else {
-            reject("Notion insertion failed");
-          }
-        } else {
-          resolve({ name });
-        }
+        
+        // Everything succeeded
+        resolve({ name });
       } catch (error) {
         reject(error);
       }
@@ -102,6 +108,8 @@ export default function Home() {
           return "You're doing that too much. Please try again later";
         } else if (error === "Email sending failed") {
           return "Failed to send email. Please try again 😢.";
+        } else if (error === "Email already exists") {
+          return "This email is already on our waitlist! 📝";
         } else if (error === "Notion insertion failed") {
           return "Failed to save your details. Please try again 😢.";
         }

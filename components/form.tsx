@@ -21,6 +21,7 @@ interface FormProps {
 export default function Form({
   name,
   email,
+  instagram,
   handleNameChange,
   handleEmailChange,
   handleInstagramChange,
@@ -53,7 +54,7 @@ export default function Form({
         <Input
           type="text"
           placeholder="Your Instagram handle"
-          value={email}
+          value={instagram}
           onChange={handleInstagramChange}
         />
       </motion.div>
