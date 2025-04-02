@@ -37,25 +37,25 @@ export const NotionWaitlistEmail = ({ userFirstname }: EmailProps) => (
           I'll keep you posted on the progress and notify you as soon as it's
           ready for you to use. In the meantime, if you have any questions or
           feedback, don't hesitate to reach out by replying directly to{" "}
-          <a href="mailto:lakshb.work@gmail.com" style={link}>
+          <a href="mailto:info@nilf.nl" style={link}>
             this email {""}
           </a>
           — I'm here to listen!
         </Text>
         <Text style={paragraph}>
-          You can also follow me on X/Twitter for updates:{" "}
-          <a href="https://x.com/blakssh" style={link}>
-            @blakssh
+          You can also follow us on Instagram for updates:{" "}
+          <a href="https://www.instagram.com/nilfmedia/" style={link}>
+            @nilfmedia
           </a>
         </Text>
         <Text style={signOff}>
           Best regards,
           <br />
-          Lakshay
+          The Nilf Team
         </Text>
         <Hr style={hr} />
         <Text style={footer}>
-          You received this email because you signed up for the Notion waitlist.
+          You received this email because you signed up for the Nilf waitlist.
           If you believe this is a mistake, feel free to ignore this email.
         </Text>
       </Container>
