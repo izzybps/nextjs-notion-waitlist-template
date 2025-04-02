@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ChangeEvent } from "react";
 import { motion } from "framer-motion";
-import { FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { FaEnvelope, FaEnvelopeOpen, FaInstagram, FaRegEnvelope, FaRegEnvelopeOpen, FaSquareEnvelope, FaXTwitter } from "react-icons/fa6";
 import { Input } from "@/components/ui/input";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { EnhancedButton } from "@/components/ui/enhanced-btn";
@@ -81,10 +81,10 @@ export default function Form({
         </Link>
         or
         <Link
-          href="https://x.com/blakssh"
+          href="mailto:info@nilf.nl"
           rel="noopener noreferrer"
           target="_blank">
-          <FaXTwitter className="h-4 w-4 transition-all duration-200 ease-linear hover:text-red-200" />
+          <FaRegEnvelopeOpen className="h-4 w-4 transition-all duration-200 ease-linear hover:text-red-200" />
         </Link>
       </motion.div>
     </motion.div>
