@@ -18,7 +18,7 @@ export default function Header() {
           <Button
             size="sm"
             variant="secondary"
-            className="text-yellow-50 transition-all duration-150 ease-linear md:hover:text-yellow-200">
+            className="text-red-50 transition-all duration-150 ease-linear md:hover:text-red-200">
             <SiNotion className="md:mr-1.5" />
             <span className="hidden md:inline">Notion DB sample</span>
           </Button>
@@ -29,7 +29,7 @@ export default function Header() {
           <Button
             size="sm"
             variant="secondary"
-            className="text-yellow-50 transition-all duration-150 ease-linear md:hover:text-yellow-200">
+            className="text-red-50 transition-all duration-150 ease-linear md:hover:text-red-200">
             <FaGithub className="md:mr-1.5" />
             <span className="hidden md:inline">Use this template</span>
           </Button>

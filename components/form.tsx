@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ChangeEvent } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { Input } from "@/components/ui/input";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { EnhancedButton } from "@/components/ui/enhanced-btn";
@@ -10,8 +10,10 @@ import { containerVariants, itemVariants } from "@/lib/animation-variants";
 interface FormProps {
   name: string;
   email: string;
+  instagram: string;
   handleNameChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleEmailChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleInstagramChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: () => void;
   loading: boolean;
 }
@@ -21,6 +23,7 @@ export default function Form({
   email,
   handleNameChange,
   handleEmailChange,
+  handleInstagramChange,
   handleSubmit,
   loading,
 }: FormProps) {
@@ -33,7 +36,7 @@ export default function Form({
       <motion.div variants={itemVariants}>
         <Input
           type="text"
-          placeholder="Your Name"
+          placeholder="Your name"
           value={name}
           onChange={handleNameChange}
         />
@@ -41,9 +44,17 @@ export default function Form({
       <motion.div variants={itemVariants}>
         <Input
           type="email"
-          placeholder="Your Email Address"
+          placeholder="Your email address"
           value={email}
           onChange={handleEmailChange}
+        />
+      </motion.div>
+      <motion.div variants={itemVariants}>
+        <Input
+          type="text"
+          placeholder="Your Instagram handle"
+          value={email}
+          onChange={handleInstagramChange}
         />
       </motion.div>
       <motion.div variants={itemVariants}>
@@ -62,17 +73,17 @@ export default function Form({
         className="mt-4 flex w-full items-center justify-center gap-1 text-muted-foreground">
         <p>For any queries, reach out at </p>
         <Link
-          href="https://x.com/blakssh"
+          href="https://www.instagram.com/nilfmedia/"
           rel="noopener noreferrer"
           target="_blank">
-          <FaXTwitter className="h-4 w-4 transition-all duration-200 ease-linear hover:text-yellow-200" />
+          <FaInstagram className="ml-0.5 h-5 w-5 transition-all duration-200 ease-linear hover:text-red-200" />
         </Link>
         or
         <Link
-          href="https://github.com/lakshaybhushan"
+          href="https://x.com/blakssh"
           rel="noopener noreferrer"
           target="_blank">
-          <FaGithub className="ml-0.5 h-5 w-5 transition-all duration-200 ease-linear hover:text-yellow-200" />
+          <FaXTwitter className="h-4 w-4 transition-all duration-200 ease-linear hover:text-red-200" />
         </Link>
       </motion.div>
     </motion.div>

@@ -4,14 +4,15 @@ import { toast } from "sonner";
 import { useState } from "react";
 import CTA from "@/components/cta";
 import Form from "@/components/form";
-import Logos from "@/components/logos";
+// import Logos from "@/components/logos";
 import Particles from "@/components/ui/particles";
-import Header from "@/components/header";
+// import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [instagram, setInstagram] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +23,17 @@ export default function Home() {
     setName(event.target.value);
   };
 
+  const handleInstagramChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
   const isValidEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const handleSubmit = async () => {
-    if (!name || !email) {
+    if (!name || !email || !instagram) {
       toast.error("Please fill in all fields 😠");
       return;
     }
@@ -67,7 +72,7 @@ export default function Home() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name, email }),
+          body: JSON.stringify({ name, email, instagram }),
         });
 
         if (!notionResponse.ok) {
@@ -89,6 +94,7 @@ export default function Home() {
       success: (data) => {
         setName("");
         setEmail("");
+        setInstagram("");
         return "Thank you for joining the waitlist 🎉";
       },
       error: (error) => {
@@ -109,31 +115,33 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center overflow-x-clip pt-12 md:pt-24">
-      <section className="flex flex-col items-center px-4 sm:px-6 lg:px-8">
-        <Header />
+    <main className="flex min-h-screen flex-col items-center justify-center overflow-x-clip">
+      <section className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+        {/* <Header /> */}
 
         <CTA />
 
         <Form
           name={name}
           email={email}
+          instagram={instagram}
           handleNameChange={handleNameChange}
           handleEmailChange={handleEmailChange}
+          handleInstagramChange={handleInstagramChange}
           handleSubmit={handleSubmit}
           loading={loading}
         />
 
-        <Logos />
+        {/* <Logos /> */}
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
 
       <Particles
         quantityDesktop={350}
         quantityMobile={100}
         ease={80}
-        color={"#F7FF9B"}
+        color={"#eb0700"}
         refresh
       />
     </main>
